@@ -8,4 +8,4 @@ Tüm ayarlar config.js içinde bulunmakta config.js düzenleyerek hazır hale ge
 # Kurulum
   - **config.js** dosyasını kendimize göre düzenliyoruz
   - **setup.bat** dosyasını çalıştırıyoruz
-  - **başlat.bat** ile bot tamamen aktif oluyor
+  - **start.bat** ile bot tamamen aktif oluyor
