@@ -1,21 +1,21 @@
 const config = {
     bot : {
-		token: "TOKEn", //Bot Tokeniniz
-		prefix: ".", //komut ön eki
+	token: "TOKEn", //Bot Tokeniniz
+	prefix: ".", //komut ön eki
         id: "671670191179956234" //bot idsi
-	},
-	sunucu : {
-		ip: "play.craftrise.tc", //sunucu adresi
+   },
+    sunucu : {
+	ip: "play.craftrise.tc", //sunucu adresi
         isim: "BrothersNW" //sunucu ismi
-	},
-	kanal : {
-		aktif: false, //sesli kanalda online gösterme aktif mi(true) olsun kapalı mı(false)
-		id: "957243765217689640", // sunucu online sayısının gözükeceği kanal (ses kanalı)
-		yazi: "• Aktif: {online}/{maxonline}" // kanalda gözükecek yazı
-	},
-	durum : {
-		mesaj: "{online} Kişi Sunucumuzda" // bot durumunda online sayısı 
-	},
+   },
+    kanal : {
+	aktif: false, //sesli kanalda online gösterme aktif mi(true) olsun kapalı mı(false)
+	id: "957243765217689640", // sunucu online sayısının gözükeceği kanal (ses kanalı)
+	yazi: "• Aktif: {online}/{maxonline}" // kanalda gözükecek yazı
+   },
+    durum : {
+	mesaj: "{online} Kişi Sunucumuzda" // bot durumunda online sayısı 
+   },
     ticket : {
         
         parentOpened: "617773799739228164", //destek talep kanallarının açılacağı kategorinin idsi
