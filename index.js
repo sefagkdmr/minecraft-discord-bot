@@ -32,7 +32,7 @@ for (const file of eventFiles) {
   client.on('messageCreate', async message => {
   let prefix = config.bot.prefix
   let id = config.bot.id
-    if (message.content === `<@!671670191179956234>`) {
+    if (message.content === `<@${id}>`) {
         message.channel.send(`Benim prefixim \`${prefix}\``)
     }});
 
