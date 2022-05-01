@@ -1,6 +1,6 @@
 const config = {
     bot : {
-		token: "NjcxNjcwMTkxMTc5OTU2MjM0.XjATnA.l18kbXMJ19xIXYQkJVy00YKt4F8", //Bot Tokeniniz
+		token: "TOKEn", //Bot Tokeniniz
 		prefix: ".", //komut ön eki
         id: "671670191179956234" //bot idsi
 	},
