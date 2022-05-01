@@ -1,6 +1,6 @@
 const config = {
     bot : {
-		token: "TOKEN", //Bot Tokeniniz
+		token: "NjcxNjcwMTkxMTc5OTU2MjM0.XjATnA.l18kbXMJ19xIXYQkJVy00YKt4F8", //Bot Tokeniniz
 		prefix: ".", //komut ön eki
         id: "671670191179956234" //bot idsi
 	},
@@ -9,11 +9,12 @@ const config = {
         isim: "BrothersNW" //sunucu ismi
 	},
 	kanal : {
+		aktif: false, //sesli kanalda online gösterme aktif mi(true) olsun kapalı mı(false)
 		id: "957243765217689640", // sunucu online sayısının gözükeceği kanal (ses kanalı)
 		yazi: "• Aktif: {online}/{maxonline}" // kanalda gözükecek yazı
 	},
 	durum : {
-		mesaj: "{online} KİŞİ XxxCraft'ta" // bot durumunda online sayısı 
+		mesaj: "{online} Kişi Sunucumuzda" // bot durumunda online sayısı 
 	},
     ticket : {
         
