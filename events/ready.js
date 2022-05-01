@@ -50,10 +50,10 @@ module.exports = {
 		}
 
   		update();
-  		updates();
+  		if(ayarlar.kanal.aktif == true) updates();
   		console.log(chalk.green(`[${ayarlar.sunucu.isim}]`) + chalk.cyan(` ${ayarlar.sunucu.ip}`));
   		i(update,30000).catch(chalk.green(`[${ayarlar.sunucu.isim}]`) + ` ${console.error}`)
-  		i(updates,600000).catch(chalk.green(`[${ayarlar.sunucu.isim}]`) + ` ${console.error}`)	
+  		if(ayarlar.kanal.aktif == true) i(updates,600000).catch(chalk.green(`[${ayarlar.sunucu.isim}]`) + ` ${console.error}`);	
 
 		const oniChan = client.channels.cache.get(ayarlar.ticket.ticketChannel)
 
