@@ -1,4 +1,4 @@
-const {MessageEmbed} = require("discord.js");
+const {MessageEmbed, Permissions} = require("discord.js");
 const client = global.client;
 const config = require("../config.js")
 module.exports = {
