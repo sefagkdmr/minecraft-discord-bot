@@ -17,7 +17,7 @@ module.exports = {
         topic: interaction.user.id,
         permissionOverwrites: [{
             id: interaction.user.id,
-            allow: ['SEND_MESSAGES', 'VIEW_CHANNEL'],
+            allow: ['SEND_MESSAGES', 'VIEW_CHANNEL', 'READ_MESSAGE_HISTORY'],
           },
           {
             id: conf.ticket.roleSupport,
