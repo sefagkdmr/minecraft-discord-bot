@@ -7,8 +7,8 @@ module.exports = {
 	async execute(message, args) {
         let mesaj = args.slice(1).join(' ')
         let member = message.mentions.members.first()
-        if (!args[0]) return message.channel.send(`:x: Bir seçenek belirtmelisin. Seçenekler \`avatar\`, \`kafa\`, \`vücut\` veya \`skin\` şeklinde olmalıdır. \`${config.bot.prefix}skin kafa Sefa_gkdmr\``)
-        if (!mesaj) return message.channel.send(`:x: Bir kullanıcı adı belirtmelisin. \`${config.bot.prefix}skin kafa Sefa_gkdmr\``);
+        if (!args[0]) return message.channel.send(`:x: Bir seçenek belirtmelisin. Seçenekler \`avatar\`, \`kafa\`, \`vücut\` veya \`skin\` şeklinde olmalıdır. \`${config.bot.prefix}skin kafa Sefa_GK\``)
+        if (!mesaj) return message.channel.send(`:x: Bir kullanıcı adı belirtmelisin. \`${config.bot.prefix}skin kafa Sefa_GK\``);
         if (mesaj == member) return message.channel.send(`:x: Bu bir kullanıcı adı değil, bir kullanıcı adı belirtmelisin.`)
 
         if (args[0] == 'avatar') {
