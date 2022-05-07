@@ -21,7 +21,7 @@ module.exports = {
           },
           {
             id: conf.ticket.roleSupport,
-            allow: ['SEND_MESSAGES', 'VIEW_CHANNEL'],
+            allow: ['SEND_MESSAGES', 'VIEW_CHANNEL', 'READ_MESSAGE_HISTORY'],
           },
           {
             id: interaction.guild.roles.everyone,
