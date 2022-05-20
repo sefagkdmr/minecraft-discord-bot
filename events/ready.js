@@ -77,10 +77,12 @@ module.exports = {
 			  components: [row]
 			})
 		  }
-
-		  oniChan.bulkDelete(100).then(() => {
+		  
+		  oniChan.bulkDelete(100).catch(err => console.log(chalk.green(`[${ayarlar.sunucu.isim}]`) + chalk.cyan(' Lütfen talep oluşturma kanalındaki eski mesajları temizleyin mesajlar 14 günden eski olduğu için silemiyorum '))).then(() => {
 			sendTicketMSG()
 			console.log(chalk.green(`[${ayarlar.sunucu.isim}]`) + chalk.cyan(' Talep oluşturma mesajı gönderildi..'))
-		  })
+		  }) 
+
+		  
 	},
 };
