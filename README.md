@@ -12,4 +12,4 @@ Not: Sesli kanalda online gösterme kısmı Discord'un izin verdiği şekilde ç
   - **setup.bat** dosyasını çalıştırıyoruz
   - **start.bat** ile bot tamamen aktif oluyor
 
-Bulduğunuz Hata&Buglar için Discord: Sefa#5880 & Sefa#3838
+Bulduğunuz Hata&Buglar için Discord: https://discord.gg/wvYujGGEfp
