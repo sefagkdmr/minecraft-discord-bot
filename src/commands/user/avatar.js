@@ -1,4 +1,4 @@
-/* Definitions */
+
 const { EmbedBuilder, ContextMenuCommandBuilder, SlashCommandBuilder, ApplicationCommandType } = require("discord.js");
 
 /* Command */
