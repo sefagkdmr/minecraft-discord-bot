@@ -1,19 +1,24 @@
 {
-  "name": "minecrafttr-bot",
-  "version": "1.20.1",
-  "description": "",
-  "main": "index.js",
+  "name": "minecrafttr-discord-bot",
+  "version": "1.20.1-djsv14",
+  "description": "minecraft sunucuları için discord botu",
+  "main": "app.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "minecrafttr-sakinleri",
+  "keywords": [
+    "minecraft",
+    "mc",
+    "minecrafttr"
+  ],
+  "author": "minecrafttr",
   "license": "ISC",
   "dependencies": {
-    "@agc93/privatebin": "^0.0.2",
+    "@agc93/privatebin": "^0.0.3",
     "chalk": "^4.1.2",
-    "discord-api-types": "^0.32.0",
-    "discord.js": "^13.6.0",
+    "discord.js": "^14.6.0",
     "request": "^2.88.2",
-    "snekfetch": "^4.0.4"
+    "snekfetch": "^4.0.4",
+    "string-similarity": "^4.0.4"
   }
 }
