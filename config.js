@@ -1,14 +1,18 @@
+
+
 const config = {
     bot : {
         slashCommands: "global", // global veya sunucuIDsi yazın - slash olmayacaksa undefined yapın
 	    token: "token", //Bot Tokeniniz
 	    prefix: ["."], //komut ön eki
-        id: "671670191179956234" //bot idsi
-   },
+        id: "botID" //bot idsi
+    },
     sunucu : {
 	    ip: "play.craftrise.tc", //sunucu adresi
-        isim: "CraftRise" //sunucu ismi
-   },
+        port: 25565, //sunucu portu
+        isim: "CraftRise", //sunucu ismi
+        
+    },
     kanal : {
 	    aktif: false, //sesli kanalda online gösterme aktif mi(true) olsun kapalı mı(false)
 	    id: "957243765217689640", // sunucu online sayısının gözükeceği kanal (ses kanalı)
@@ -17,9 +21,9 @@ const config = {
     durum : {
 	    mesaj: "{online} Kişi Sunucumuzda" // bot durumunda online sayısı 
    },
-    ticket : {
-        
+    ticket : {    
         parentOpened: "617773799739228164", //destek talep kanallarının açılacağı kategorinin idsi
+
         Category1: "Minecraft Sorunları", //Destek talebi detayı için kategori 3
         Category2: "Bulduğunuz Buglar", //Destek talebi detayı için kategori 2
         Category3: "Şikayetler", //Destek talebi detayı için kategori 3
@@ -30,4 +34,8 @@ const config = {
         ticketChannel: "594516422021873665" //Kullanıcıların destek talebi oluşturacağı kanalın idsi
     }
 }
+
+
+
+
 module.exports = config

@@ -17,6 +17,7 @@
     "@agc93/privatebin": "^0.0.3",
     "chalk": "^4.1.2",
     "discord.js": "^14.6.0",
+    "got": "^11.8.6",
     "request": "^2.88.2",
     "snekfetch": "^4.0.4",
     "string-similarity": "^4.0.4"

@@ -1,16 +1,19 @@
 const chalk = require('chalk');
 const { ActivityType ,ButtonStyle, PermissionFlagsBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
+const { fstat, writeFileSync } = require('fs');
+
 
 module.exports = {
     eventName: "ready",
 	name: 'Client Ready',
 	once: true,
-	execute(client) {
+	async execute(client) {
 		const settings = require("../../app.js") 
 		const i = require("util").promisify(setInterval)
 		var statustring = "Bağlantı hatası!";
 		var request = require('request');
-		var url = 'http://mcapi.tc/?' + settings.sunucu.ip + '/json';
+		var url = "https://mcapi.us/server/status?ip=" + settings.sunucu.ip + "&port=" + settings.sunucu.port;
+		const got = require('got');
 
 		console.log(chalk.red('=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+='))
   	 	console.log(chalk.green('Bot İsmi: ') + chalk.cyan(client.user.username))
@@ -18,45 +21,42 @@ module.exports = {
     	console.log(chalk.red('=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+='))
 
 		function update() {
-  			request(url, function(err, response, body) {
-				if(err) {
-          			console.log(err);
-      			}
-     			body = JSON.parse(body);
-      			var status = settings.durum.mesaj.replace("{online}", body.players);
-      			console.log(chalk.green(`[${settings.sunucu.isim}]`) + chalk.yellow(` ${body.players}`) + chalk.cyan(` oyuncu sunucumuzda aktif!`));
-      			if(body.players) {
-        			if((body.description=="&cWe are under maintenance.")||(body.players>=body.max_players)){
-            			client.user.setStatus('idle')
-            			.catch(console.error);
-					}else{
-            			client.user.setStatus('online')
-         			}       
-      			} else {
-       				client.user.setStatus('dnd')
-      			}
-      			client.user.setActivity(status, { type: ActivityType.Playing })
-  			}); 
+
+			got.get(url).then(response => {
+				const body = JSON.parse(response.body);
+				var status = settings.durum.mesaj.replace("{online}", body.players.now);
+				console.log(chalk.green(`[${settings.sunucu.isim}]`) + chalk.yellow(` ${body.players.now}`) + chalk.cyan(` oyuncu sunucumuzda aktif!`));
+				if(body.players.now > 0) {
+					client.user.setStatus('online')
+				} else {
+					client.user.setStatus('dnd')
+				}
+				client.user.setActivity(status, { type: ActivityType.Playing })
+			}).catch(error => {
+				console.log(error)
+			})
 		}
 
 		function updates() {
-  			request(url, function(err, response, body) {
-  				if(err) console.log(err);  
-    			body = JSON.parse(body);
-    			if(body.players) {
-      				client.channels.cache.get(settings.kanal.id).setName(settings.kanal.yazi.replace("{online}", body.players).replace("{maxonline}", body.max_players))
-    			} else {
-      				client.channels.cache.get(settings.kanal.id).setName(settings.kanal.yazi.replace("{online}", 0).replace("{maxonline}", body.max_players));
-				}
-  			})
-		}
 
-  		update();
-  		if(settings.kanal.aktif == true) updates();
-  		console.log(chalk.green(`[${settings.sunucu.isim}]`) + chalk.cyan(` ${settings.sunucu.ip}`));
+			got.get(url).then(response => {
+				const body = JSON.parse(response.body);
+				if(body.players.now > 0) {
+					client.channels.cache.get(settings.kanal.id).setName(settings.kanal.yazi.replace("{online}", body.players.now).replace("{maxonline}", body.players.max))
+				} else {
+					client.channels.cache.get(settings.kanal.id).setName(settings.kanal.yazi.replace("{online}", 0).replace("{maxonline}", body.players.max));
+				}
+			}).catch(error => {
+				console.log(error)
+			})
+		}
+		update();
   		i(update,30000).catch(chalk.green(`[${settings.sunucu.isim}]`) + ` ${console.error}`)
+
+		if(settings.kanal.aktif == true) updates();
   		if(settings.kanal.aktif == true) i(updates,600000).catch(chalk.green(`[${settings.sunucu.isim}]`) + ` ${console.error}`);	
 
+		console.log(chalk.green(`[${settings.sunucu.isim}]`) + chalk.cyan(` ${settings.sunucu.ip}`));
 		const oniChan = client.channels.cache.get(settings.ticket.ticketChannel)
 
 		function sendTicketMSG() {
