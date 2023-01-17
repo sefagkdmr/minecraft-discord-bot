@@ -1,4 +1,4 @@
-const { EmbedBuilder, ContextMenuCommandBuilder, SlashCommandBuilder, ApplicationCommandType } = require("discord.js");
+const { EmbedBuilder, ContextMenuCommandBuilder, SlashCommandBuilder} = require("discord.js");
 
 const settings = require("../../../app.js");
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
 	async executePrefix(client, message, args) {
         const prefix = settings.bot.prefix;
         const help = new EmbedBuilder().setAuthor({name: `Komutlar`, iconURL: client.user.displayAvatarURL()}).setColor("Random").setFooter({text: settings.sunucu.ip}).setThumbnail(client.user.displayAvatarURL());
-        if(message.member.roles.cache.some(role => role.id === settings.ticket.roleSupport) || message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+        if(message.member.roles.cache.some(role => role.id === settings.ticket.roleSupport) || message.member.permissions.has("ADMINISTRATOR")) {
             help
             .addFields([
                 {name: `:bust_in_silhouette: ${prefix}avatar`, value: `Belirtilen kullanıcının veya belirtilmemişse kodu kullanan kullanıcının profil fotoğrafını gönderir`, inline: true},
@@ -39,7 +39,7 @@ module.exports = {
     async executeSlash(interaction) {
         const prefix = settings.bot.prefix;
         const help = new EmbedBuilder().setAuthor({name: `Komutlar`, iconURL: client.user.displayAvatarURL()}).setColor("Random").setFooter({text: settings.sunucu.ip}).setThumbnail(client.user.displayAvatarURL());
-        if(interaction.member.roles.cache.some(role => role.id === settings.ticket.roleSupport) || interaction.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+        if(interaction.member.roles.cache.some(role => role.id === settings.ticket.roleSupport) || interaction.member.permissions.has("ADMINISTRATOR")) {
             help
             .addFields([
                 {name: `:bust_in_silhouette: ${prefix}avatar`, value: `Belirtilen kullanıcının veya belirtilmemişse kodu kullanan kullanıcının profil fotoğrafını gönderir`, inline: true},
