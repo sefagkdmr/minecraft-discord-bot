@@ -27,7 +27,7 @@ data: {
                     .addFields([
                       {name:":link: Sunucu Ip;", value: '▸ ' + reason, inline: true},
                       {name: ":stopwatch: Gecikme;" , value: '▸ ' + body.ping, inline: true},
-                      {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.online.now + '/' + body.online.max, inline: true },
+                      {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.now + '/' + body.players.max, inline: true },
                       {name: ":wrench: Sürüm;" , value: '▸ ' + body.server.name, inline: false},
                     ])
                     .setImage("http://status.mclive.eu/"+ reason +"/"+ body.hostname +"/"+ body.port+ "/banner.png")
