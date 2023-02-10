@@ -26,7 +26,7 @@ data: {
                     .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + body.hostname})
                     .addFields([
                       {name:":link: Sunucu Ip;", value: '▸ ' + reason, inline: true},
-                      {name: ":stopwatch: Web Site;" , value: '▸ ' + ayarlar.sunucu.site, inline: true},
+                      {name: ":stopwatch: Web Site;" , value: '▸ ' + settings.sunucu.site, inline: true},
                       {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.now + '/' + body.players.max, inline: true },
                       {name: ":wrench: Sürüm;" , value: '▸ ' + body.server.name, inline: false},
                     ])
@@ -38,6 +38,7 @@ data: {
                 message.channel.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
             }
         }).catch(error => {
+            console.log(error)
             message.channel.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
         });
     },
@@ -55,7 +56,7 @@ data: {
                     .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + body.hostname})
                     .addFields([
                       {name:":link: Sunucu Ip;", value: '▸ ' + reason, inline: true},
-                      {name: ":stopwatch: Web Site;" , value: '▸ ' + ayarlar.sunucu.site, inline: true},
+                      {name: ":stopwatch: Web Site;" , value: '▸ ' + settings.sunucu.site, inline: true},
                       {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.now + '/' + body.players.max, inline: true },
                       {name: ":wrench: Sürüm;" , value: '▸ ' + body.server.name, inline: false},
                     ])
@@ -67,6 +68,7 @@ data: {
               interaction.channel.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
           }
       }).catch(error => {
+          console.log(error)
           interaction.channel.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
       });
 

@@ -10,6 +10,7 @@ const config = {
     sunucu : {
 	    ip: "play.craftrise.tc", //sunucu adresi
         port: 25565, //sunucu portu
+        site: "https://craftrise.tc", //sunucu sitesi
         isim: "CraftRise", //sunucu ismi
         
     },
@@ -36,6 +37,4 @@ const config = {
 }
 
 
-
-
-module.exports = config
+module.exports = config;
