@@ -26,12 +26,12 @@ data: {
                     .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + body.hostname})
                     .addFields([
                       {name:":link: Sunucu Ip;", value: '▸ ' + reason, inline: true},
-                      {name: ":stopwatch: Gecikme;" , value: '▸ ' + body.ping, inline: true},
+                      {name: ":stopwatch: Web Site;" , value: '▸ ' + ayarlar.sunucu.site, inline: true},
                       {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.now + '/' + body.players.max, inline: true },
                       {name: ":wrench: Sürüm;" , value: '▸ ' + body.server.name, inline: false},
                     ])
-                    .setImage("http://status.mclive.eu/"+ reason +"/"+ body.hostname +"/"+ body.port+ "/banner.png")
-                    .setThumbnail("https://eu.mc-api.net/v3/server/favicon/" + body.hostname)
+                    .setImage("http://status.mclive.eu/"+ reason +"/"+ reason +"/"+ settings.sunucu.port+ "/banner.png")
+                    .setThumbnail("https://eu.mc-api.net/v3/server/favicon/" + reason)
                     .setFooter({text: reason})
                   message.channel.send({embeds: [embeda]})
             } else {
@@ -49,25 +49,25 @@ data: {
 
       got(url).then(response => {
           let body = JSON.parse(response.body);
-          if (body.online.now >= 0) { 
-              const embeda = new EmbedBuilder()
-                  .setColor('Random')
-                  .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + body.hostname})
-                  .addFields([
-                    {name:":link: Sunucu Ip;", value: '▸ ' + reason, inline: true},
-                    {name: ":stopwatch: Gecikme;" , value: '▸ ' + body.ping, inline: true},
-                    {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.online.now + '/' + body.online.max, inline: true },
-                    {name: ":wrench: Sürüm;" , value: '▸ ' + body.server.name, inline: false},
-                  ])
-                  .setImage("http://status.mclive.eu/"+ reason +"/"+ body.hostname +"/"+ body.port+ "/banner.png")
-                  .setThumbnail("https://eu.mc-api.net/v3/server/favicon/" + body.hostname)
-                  .setFooter({text: reason})
+          if (body.players.now >= 0) { 
+                const embeda = new EmbedBuilder()
+                    .setColor('Random')
+                    .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + body.hostname})
+                    .addFields([
+                      {name:":link: Sunucu Ip;", value: '▸ ' + reason, inline: true},
+                      {name: ":stopwatch: Web Site;" , value: '▸ ' + ayarlar.sunucu.site, inline: true},
+                      {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.now + '/' + body.players.max, inline: true },
+                      {name: ":wrench: Sürüm;" , value: '▸ ' + body.server.name, inline: false},
+                    ])
+                    .setImage("http://status.mclive.eu/"+ reason +"/"+ reason +"/"+ settings.sunucu.port+ "/banner.png")
+                    .setThumbnail("https://eu.mc-api.net/v3/server/favicon/" + reason)
+                    .setFooter({text: reason})
                 interaction.send({embeds: [embeda]})
           } else {
-              interaction.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
+              interaction.channel.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
           }
       }).catch(error => {
-          interaction.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
+          interaction.channel.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
       });
 
   }
