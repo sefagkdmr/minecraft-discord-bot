@@ -20,7 +20,7 @@ data: {
 
         got(url).then(response => {
             let body = JSON.parse(response.body);
-            if (body.online.now >= 0) { 
+            if (body.players.now >= 0) { 
                 const embeda = new EmbedBuilder()
                     .setColor('Random')
                     .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + body.hostname})
