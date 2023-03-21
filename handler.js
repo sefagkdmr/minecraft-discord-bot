@@ -45,6 +45,7 @@ try {
                 const command = await require(`./src/commands/${dir}/${file}`)
                 await client.commands.set(command.data.name, command);
                 await client.usages.set(command.data.name, command.data.usage);
+                await client.cooldowns.set(command.data.name, command.data.cooldown);
 				await command.data.aliases.forEach(async alias => {
 					await client.aliases.set(alias, command.data.name);
 				});
@@ -54,7 +55,7 @@ try {
         });
     }
 
-    if (settings.bot.slashCommands) {
+    if (settings.bot.slashCommands && settings.bot.slashCommands !== "undefined") {
         const rest = new REST({ version: '10' }).setToken(settings.bot.token);
         const slashCommands = [];
     
@@ -62,6 +63,8 @@ try {
             fs.readdirSync(`./src/commands/${dir}`).filter(file => file.endsWith(".js")).forEach(async file => {
                 const command = await require(`./src/commands/${dir}/${file}`)
                 await client.commands.set(command.data.name, command);
+                const cd = await require(`./src/commands/${dir}/${file}`)
+                await client.cooldowns.set(command.data.cooldown, cd);
                 await command.data.slash.setName(command.data.name).setDescription(command.data.description)
                 await slashCommands.push(command.data.slash.toJSON());
                 if (command.data.contextMenu) {
@@ -71,14 +74,17 @@ try {
                 await console.log(chalk.green('[/Komutlar] ') + chalk.yellow(`${command.data.name} `) + chalk.cyan(`adlı komut yüklendi.`));
             });
         });
+        
     
         setTimeout(() => {
             if (settings.bot.slashCommands === "global") {
                 rest.put(Routes.applicationCommands(client.user.id, settings.bot.slashCommands),  { body: slashCommands }).then(() => console.log(chalk.green('[/Komutlar] ') + chalk.cyan("Slash komutları global bir şekilde başarıyla yüklendi.")))
             } else {
-                rest.put(Routes.applicationGuildCommands(client.user.id, settings.bot.slashCommands),  { body: slashCommands }).then(() => console.log(chalk.green('[Komutlar] ') + chalk.cyan("Slash komutları sadece bir sunucuya başarıyla yüklendi.")))
+                rest.put(Routes.applicationGuildCommands(client.user.id, settings.bot.slashCommands),  { body: slashCommands }).then(() => console.log(chalk.green('[/Komutlar] ') + chalk.cyan("Slash komutları sadece bir sunucuya başarıyla yüklendi.")))
             }
         }, 5000);
+    } else {
+        setTimeout(() => {console.log(chalk.yellow('[/Komutlar] ') + chalk.cyan("Slash komutları kapalı ") + chalk.red("config.js ") + chalk.cyan("üzerinden açabilirsiniz"))} , 5000);
     }
 
 } catch(e) {

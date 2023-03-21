@@ -1,38 +1,50 @@
-
-
 const config = {
     bot : {
-        slashCommands: "global", // global veya sunucuIDsi yazın - slash olmayacaksa undefined yapın
-	    token: "token", //Bot Tokeniniz
+        slashCommands: "undefined", // global veya sunucuIDsi yazın - slash olmayacaksa undefined yapın
+	    token: "TOKEN", //Bot Tokeniniz
 	    prefix: ["."], //komut ön eki
-        id: "botID" //bot idsi
+        id: "BOT ID" //bot idsi
     },
     sunucu : {
-	    ip: "play.craftrise.tc", //sunucu adresi
+	    ip: "Sunucu İp adresi", //sunucu adresi
         port: 25565, //sunucu portu
-        site: "https://craftrise.tc", //sunucu sitesi
-        isim: "CraftRise", //sunucu ismi
+        site: "Sunucu Sitesi", //sunucu sitesi
+        isim: "Sunucu İsmi", //sunucu ismi
+        mcindir: "Oyuncuları için 3. parti minecraft indirme linki", //minecraft indirme linki
+        vote: "Sunucunuzun Oy linki", //oy verme linki
         
     },
     kanal : {
 	    aktif: false, //sesli kanalda online gösterme aktif mi(true) olsun kapalı mı(false)
-	    id: "957243765217689640", // sunucu online sayısının gözükeceği kanal (ses kanalı)
-	    yazi: "• Aktif: {online}/{maxonline}" // kanalda gözükecek yazı
+	    id: "Kanal İd", // sunucu online sayısının gözükeceği kanal (ses kanalı)
+	    yazi: "• Aktif: {online}/{maxonline}" // kanalda gözükecek yazı || Varsayılan: • Aktif: {online}/{maxonline}
    },
     durum : {
-	    mesaj: "{online} Kişi Sunucumuzda" // bot durumunda online sayısı 
+	    mesaj: "{online} Kişi Sunucumuzda" // bot durumunda online sayısı || Varsayılan {online} Kişi Sunucumuzda 
    },
     ticket : {    
-        parentOpened: "617773799739228164", //destek talep kanallarının açılacağı kategorinin idsi
+        parentOpened: "Talep kanallarının açılacağı kategori", //destek talep kanallarının açılacağı kategorinin idsi
 
-        Category1: "Minecraft Sorunları", //Destek talebi detayı için kategori 3
-        Category2: "Bulduğunuz Buglar", //Destek talebi detayı için kategori 2
-        Category3: "Şikayetler", //Destek talebi detayı için kategori 3
+        Category1: "Minecraft Sorunları", //Destek talebi detayı için kategori 3 || Varsayılan: Minecraft Sorunları
+        Category2: "Bulduğunuz Buglar", //Destek talebi detayı için kategori 2 || Varsayılan: Bulduğunuz Buglar
+        Category3: "Şikayetler", //Destek talebi detayı için kategori 3 || Varsayılan: Şikayetler
           
-        roleSupport: "553604912152313868", //Destek talebine bakacak kişilere verilecek rolün idsi
+        roleSupport: "Destek Yetkilisi Rol İD", //Destek talebine bakacak kişilere verilecek rolün idsi
             
-        logsTicket: "579598511981592586", //Destek taleplerinin loglanacağı kanal
-        ticketChannel: "594516422021873665" //Kullanıcıların destek talebi oluşturacağı kanalın idsi
+        logsTicket: "Destek talepleri log kanal id", //Destek taleplerinin loglanacağı kanal
+        ticketChannel: "Destek Talebi Açılacak Kanal İD" //Kullanıcıların destek talebi oluşturacağı kanalın idsi
+    },
+    oylama: {
+        enabled: false, //oylama aktif mi? true: aktif false: pasif
+        channelID: "Kullanıcıların Öneri yazabileceği kanal İD", //oylama kanalı
+        emoji: "👍", //oylama emoji || Varsayılan: 👍
+        emoji2: "👎", //oylama emoji || Varsayılan: 👎
+        emoji3: "🤷", //oylama emoji || Varsayılan: 🤷
+        altBaslik: { //alt başlık kullanılsın mı?
+            enabled: false, //alt başlık kullanılsın mı? true: kullanılsın false: kullanılmasın
+            arsivlemeSure: "1440" //alt başlık arşivlenme süresi (1440 dakika sonra [1440 dakika = 1 gün] arşivlenecek)
+        } 
+
     }
 }
 

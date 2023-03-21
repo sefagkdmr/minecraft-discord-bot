@@ -7,7 +7,7 @@ const got = require('got');
 module.exports = {
 data: {
 	name: 'kontrol',
-  aliases: ['ip'],
+  aliases: ['sunucu'],
 	description: 'kontrol',
   cooldown: 0,
   slash: new SlashCommandBuilder(),
@@ -20,7 +20,7 @@ data: {
 
         got(url).then(response => {
             let body = JSON.parse(response.body);
-            if (body.players.now >= 0) { 
+            if (body.players.now >= 0 && body.online == true) { 
                 const embeda = new EmbedBuilder()
                     .setColor('Random')
                     .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + reason})
@@ -35,11 +35,11 @@ data: {
                     .setFooter({text: reason})
                   message.channel.send({embeds: [embeda]})
             } else {
-                message.channel.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
+                message.channel.send(':x: Sunucumuz şuanda kapalı lütfen daha sonra tekrar deneyin veya yetkililere bildirin')
             }
         }).catch(error => {
             console.log(error)
-            message.channel.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
+            message.channel.send(':x: Sunucumuz şuanda kapalı lütfen daha sonra tekrar deneyin veya yetkililere bildirin')
         });
     },
 
@@ -50,7 +50,7 @@ data: {
 
       got(url).then(response => {
           let body = JSON.parse(response.body);
-          if (body.players.now >= 0) { 
+          if (body.players.now >= 0 && body.online == true) { 
                 const embeda = new EmbedBuilder()
                     .setColor('Random')
                     .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + reason})
@@ -65,11 +65,11 @@ data: {
                     .setFooter({text: reason})
                 interaction.send({embeds: [embeda]})
           } else {
-              interaction.channel.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
+              interaction.channel.send(':x: Sunucumuz şuanda kapalı lütfen daha sonra tekrar deneyin veya yetkililere bildirin')
           }
       }).catch(error => {
           console.log(error)
-          interaction.channel.send(':x: Böyle Bir Sunucu Yok Veya Şuanda Kapalı Lütfen İp Adresini Kontrol Et')
+          interaction.channel.send(':x: Sunucumuz şuanda kapalı lütfen daha sonra tekrar deneyin veya yetkililere bildirin')
       });
 
   }

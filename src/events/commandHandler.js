@@ -17,10 +17,10 @@ module.exports = {
           const commandRoot = message.content.split(' ')[0].slice(prefix.length).toLowerCase();
           const args = message.content.split(' ').slice(1);
           if (!commandRoot) return;
-          
-            const command = client.commands.get(commandRoot) || client.aliases.get(commandRoot);
-            if (command) {
+            const cmd = client.commands.get(commandRoot) || client.aliases.get(commandRoot);
+            if (cmd) {
                 const finish = new Date();
+                const command = client.commands.get(cmd) || cmd;
                 finish.setSeconds(finish.getSeconds() + command.data.cooldown);
           
                 if (client.cooldowns.has(`${commandRoot}_${message.author.id}`)) {

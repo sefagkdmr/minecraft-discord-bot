@@ -18,7 +18,9 @@ module.exports = {
             .addFields([
                 {name: `:bust_in_silhouette: ${prefix}avatar`, value: `Belirtilen kullanıcının veya belirtilmemişse kodu kullanan kullanıcının profil fotoğrafını gönderir`, inline: true},
                 {name: `:mag_right: ${prefix}kontrol ▸`, value: "Sunucu durumunu mesaj şeklinde atar (online, motd vb.)", inline: true},
+                {name: `:link: ${prefix}ip ▸`, value: `Sunucu IP Adresini gönderir`, inline: true},
                 {name: `:man_pouting: ${prefix}skin ▸`, value: `Belirtilen oyuncunun skinini gösterir\nKullanım: ${prefix}skin <skin/kafa/avatar/vücut> <nick>`, inline: true},
+                {name: `:pick: ${prefix}mc-indir ▸`, value: `Minecraft indirme linkini gönderir`, inline: true},
                 {name: "\u200b", value: "\u200b"},
                 {name: `:inbox_tray: ${prefix}ekle ▸`, value: `Belirtilen kullanıcı destek talebine eklenir\n${prefix}ekle <kullanıcı>`, inline: true},
                 {name: `:outbox_tray: ${prefix}çıkar ▸`, value: `Belirtilen kullanıcı destek talebinden çıkarılır\n${prefix}çıkar <kullanıcı>`, inline: true},
@@ -31,6 +33,7 @@ module.exports = {
                 {name: `:bust_in_silhouette: ${prefix}avatar`, value: `Belirtilen kullanıcının veya belirtilmemişse kodu kullanan kullanıcının profil fotoğrafını gönderir`, inline: true},
                 {name: `:mag_right: ${prefix}kontrol ▸`, value: "Sunucu durumunu mesaj şeklinde atar (online, motd vb.)", inline: true},
                 {name: `:man_pouting: ${prefix}skin ▸`, value: `Belirtilen oyuncunun skinini gösterir\nKullanım: ${prefix}skin <skin/kafa/avatar/vücut> <nick>`, inline: true},
+                {name: `:pick: ${prefix}mc-indir ▸`, value: `Minecraft indirme linkini gönderir`, inline: true},
             ])
             .setDescription(`Tüm komutlarımız bu şekildedir.\n bot Ön Eki(prefix): ${prefix}`);
             message.channel.send({embeds: [help]})
@@ -44,7 +47,9 @@ module.exports = {
             .addFields([
                 {name: `:bust_in_silhouette: ${prefix}avatar`, value: `Belirtilen kullanıcının veya belirtilmemişse kodu kullanan kullanıcının profil fotoğrafını gönderir`, inline: true},
                 {name: `:mag_right: ${prefix}kontrol ▸`, value: "Sunucu durumunu mesaj şeklinde atar (online, motd vb.)", inline: true},
+                {name: `:link: ${prefix}ip ▸`, value: `Sunucu IP Adresini gönderir`, inline: true},
                 {name: `:man_pouting: ${prefix}skin ▸`, value: `Belirtilen oyuncunun skinini gösterir\nKullanım: ${prefix}skin <skin/kafa/avatar/vücut> <nick>`, inline: true},
+                {name: `:pick: ${prefix}mc-indir ▸`, value: `Minecraft indirme linkini gönderir`, inline: true},
                 {name: "\u200b", value: "\u200b"},
                 {name: `:inbox_tray: ${prefix}ekle ▸`, value: `Belirtilen kullanıcı destek talebine eklenir\n${prefix}ekle <kullanıcı>`, inline: true},
                 {name: `:outbox_tray: ${prefix}çıkar ▸`, value: `Belirtilen kullanıcı destek talebinden çıkarılır\n${prefix}çıkar <kullanıcı>`, inline: true},
@@ -57,6 +62,7 @@ module.exports = {
                 {name: `:bust_in_silhouette: ${prefix}avatar`, value: `Belirtilen kullanıcının veya belirtilmemişse kodu kullanan kullanıcının profil fotoğrafını gönderir`, inline: true},
                 {name: `:mag_right: ${prefix}kontrol ▸`, value: "Sunucu durumunu mesaj şeklinde atar (online, motd vb.)", inline: true},
                 {name: `:man_pouting: ${prefix}skin ▸`, value: `Belirtilen oyuncunun skinini gösterir\nKullanım: ${prefix}skin <skin/kafa/avatar/vücut> <nick>`, inline: true},
+                {name: `:pick: ${prefix}mc-indir ▸`, value: `Minecraft indirme linkini gönderir`, inline: true},
             ])
             .setDescription(`Tüm komutlarımız bu şekildedir.\n bot Ön Eki(prefix): ${prefix}`);
             interaction.channel.send({embeds: [help]})

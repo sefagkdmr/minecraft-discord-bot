@@ -2,7 +2,7 @@
 const { getPasteUrl, PrivateBinClient } = require('@agc93/privatebin');
 const settings = require("../../../app.js")
 const { ButtonStyle, ChannelType, PermissionFlagsBits, ComponentType,EmbedBuilder, ActionRowBuilder, SelectMenuBuilder, ButtonBuilder } = require('discord.js');
-
+const got = require('got');
 module.exports =  {
 	data: {
 		name: "Talep Oluşturma",
@@ -48,6 +48,11 @@ module.exports =  {
 			  .setDescription('Talebini Detaylandırmak için bir kategori seç')
 			  .setFooter({text: `${settings.sunucu.isim} Destek Talebi Sistemi`, iconURL: client.user.displayAvatarURL()})
 			  .setTimestamp();
+
+			  var url = "https://mcapi.us/server/status?ip=" + settings.sunucu.ip + "&port=" + settings.sunucu.port;
+        let reason = settings.sunucu.ip;
+
+        
 	
 			const row = new ActionRowBuilder()
 			  .addComponents(
@@ -77,6 +82,29 @@ module.exports =  {
 			  embeds: [embed],
 			  components: [row]
 			});
+			/* 
+			// Bu kısım açılırsa açılan talep kanalında sunucu istatistikleri gözükür.
+			got(url).then(response => {
+				let body = JSON.parse(response.body);
+				if (body.players.now >= 0) { 
+					const embeda = new EmbedBuilder()
+						.setColor('Random')
+						.setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + reason})
+						.addFields([
+						  {name:":link: Sunucu Ip;", value: '▸ ' + reason, inline: true},
+						  {name: ":stopwatch: Web Site;" , value: '▸ ' + settings.sunucu.site, inline: true},
+						  {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.now + '/' + body.players.max, inline: true },
+						  {name: ":wrench: Sürüm;" , value: '▸ ' + body.server.name, inline: false},
+						])
+						.setImage("http://status.mclive.eu/"+ reason +"/"+ reason +"/"+ settings.sunucu.port+ "/banner.png")
+						.setThumbnail("https://eu.mc-api.net/v3/server/favicon/" + reason)
+						.setFooter({text: reason})
+					  c.send({embeds: [embeda]})
+				}
+			}).catch(error => {
+				console.log(error)
+				
+			});*/
 	
 			const collector = msg.createMessageComponentCollector({
 			  componentType: ComponentType.SelectMenu,
