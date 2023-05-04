@@ -65,6 +65,7 @@ try {
                 await client.commands.set(command.data.name, command);
                 const cd = await require(`./src/commands/${dir}/${file}`)
                 await client.cooldowns.set(command.data.cooldown, cd);
+                if(command.data.name == "ekle" || command.data.name == "çıkar" || command.data.name == "example") return;
                 await command.data.slash.setName(command.data.name).setDescription(command.data.description)
                 await slashCommands.push(command.data.slash.toJSON());
                 if (command.data.contextMenu) {
