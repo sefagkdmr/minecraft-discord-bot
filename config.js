@@ -6,8 +6,9 @@ const config = {
         id: "BOT ID" //bot idsi
     },
     sunucu : {
-	    ip: "Sunucu İp adresi", //sunucu adresi
-        port: 25565, //sunucu portu
+        type: "java", //sunucu türü java veya bedrock 
+ 	    ip: "sunucu ip adresi", //sunucu adresi
+        port: 25565, //sunucu portu java için varsayılan 25565 bedrock için varsayılan 19132
         site: "Sunucu Sitesi", //sunucu sitesi
         isim: "Sunucu İsmi", //sunucu ismi
         mcindir: "Oyuncuları için 3. parti minecraft indirme linki", //minecraft indirme linki
