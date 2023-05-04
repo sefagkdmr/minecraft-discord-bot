@@ -4,6 +4,7 @@ const settings = require("../../../app.js");
 var request = require('request');
 const { execute } = require("./yardım.js");
 const got = require('got');
+const functions = require("../../functions.js");
 module.exports = {
 data: {
 	name: 'kontrol',
@@ -15,25 +16,27 @@ data: {
    },
 	async executePrefix(client, message, args) {
         //mcapius link
-        var url = "https://mcapi.us/server/status?ip=" + settings.sunucu.ip + "&port=" + settings.sunucu.port;
+        var url = "https://api.mcstatus.io/v2/status/" + settings.sunucu.type + "/" + settings.sunucu.ip + ":" + settings.sunucu.port;
         let reason = settings.sunucu.ip;
-
+        
         got(url).then(response => {
             let body = JSON.parse(response.body);
-            if (body.players.now >= 0 && body.online == true) { 
+            if (body.players.online >= 0 && body.online == true) { 
+              let version = settings.sunucu.type == "java" ? body.version.name_clean : body.version.name;
                 const embeda = new EmbedBuilder()
                     .setColor('Random')
                     .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + reason})
                     .addFields([
                       {name:":link: Sunucu Ip;", value: '▸ ' + reason, inline: true},
                       {name: ":stopwatch: Web Site;" , value: '▸ ' + settings.sunucu.site, inline: true},
-                      {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.now + '/' + body.players.max, inline: true },
-                      {name: ":wrench: Sürüm;" , value: '▸ ' + body.server.name, inline: false},
+                      {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.online + '/' + body.players.max, inline: true },
+                      {name: ":wrench: Sürüm;" , value: '▸ ' + version, inline: false},
                     ])
-                    .setImage("http://status.mclive.eu/"+ reason +"/"+ reason +"/"+ settings.sunucu.port+ "/banner.png")
-                    .setThumbnail("https://eu.mc-api.net/v3/server/favicon/" + reason)
+                    .setImage("http://play.winterville.studio/" + reason + "/" + reason + "/" + settings.sunucu.port + "/banner.png")
+                    .setThumbnail("https://api.mcstatus.io/v2/icon/" + reason)
                     .setFooter({text: reason})
                   message.channel.send({embeds: [embeda]})
+                  
             } else {
                 message.channel.send(':x: Sunucumuz şuanda kapalı lütfen daha sonra tekrar deneyin veya yetkililere bildirin')
             }
@@ -45,23 +48,25 @@ data: {
 
     async executeSlash(interaction) {
 
-      var url = "https://mcapi.us/server/status?ip=" + settings.sunucu.ip + "&port=" + settings.sunucu.port;
+      var url = "https://api.mcstatus.io/v2/status/" + settings.sunucu.type + "/" + settings.sunucu.ip + ":" + settings.sunucu.port;
       let reason = settings.sunucu.ip;
 
       got(url).then(response => {
           let body = JSON.parse(response.body);
-          if (body.players.now >= 0 && body.online == true) { 
+          if (body.players.online >= 0 && body.online == true) { 
+            let version = settings.sunucu.type == "java" ? body.version.name_clean : body.version.name;
                 const embeda = new EmbedBuilder()
                     .setColor('Random')
                     .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + reason})
                     .addFields([
                       {name:":link: Sunucu Ip;", value: '▸ ' + reason, inline: true},
                       {name: ":stopwatch: Web Site;" , value: '▸ ' + settings.sunucu.site, inline: true},
-                      {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.now + '/' + body.players.max, inline: true },
-                      {name: ":wrench: Sürüm;" , value: '▸ ' + body.server.name, inline: false},
+                      {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.online + '/' + body.players.max, inline: true },
+                      {name: ":wrench: Sürüm;" , value: '▸ ' + version, inline: false},
                     ])
                     .setImage("http://status.mclive.eu/"+ reason +"/"+ reason +"/"+ settings.sunucu.port+ "/banner.png")
-                    .setThumbnail("https://eu.mc-api.net/v3/server/favicon/" + reason)
+                    //.setImage("http://api.taskium.dev/mcbanner/" + reason + "/" + reason + "/" + settings.sunucu.port + "/banner.png")
+                    .setThumbnail("https://api.mcstatus.io/v2/icon/" + reason)
                     .setFooter({text: reason})
                 interaction.send({embeds: [embeda]})
           } else {

@@ -12,7 +12,7 @@ module.exports = {
 		const i = require("util").promisify(setInterval)
 		var statustring = "Bağlantı hatası!";
 		var request = require('request');
-		var url = "https://mcapi.us/server/status?ip=" + settings.sunucu.ip + "&port=" + settings.sunucu.port;
+		var url = "https://api.mcstatus.io/v2/status/" + settings.sunucu.type + "/" + settings.sunucu.ip + ":" + settings.sunucu.port;
 		const got = require('got');
 
 		console.log(chalk.red('=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+='))
@@ -26,12 +26,12 @@ module.exports = {
 
 			got.get(url).then(response => {
 				const body = JSON.parse(response.body);
-				var status = settings.durum.mesaj.replace("{online}", body.players.now);
+				var status = settings.durum.mesaj.replace("{online}", body.players.online);
 				
-				if(body.players.now >= 0 && body.online == true) {
+				if(body.players.online >= 0 && body.online == true) {
 					client.user.setStatus('online')
 					client.user.setActivity(status, { type: ActivityType.Playing })
-					console.log(chalk.magenta(`[${settings.sunucu.isim}]`) + chalk.cyan(" Sunucumuzda ") +chalk.bold(chalk.underline(chalk.yellow(`${body.players.now}`))) + chalk.cyan(` Oyuncu aktif!`));
+					console.log(chalk.magenta(`[${settings.sunucu.isim}]`) + chalk.cyan(" Sunucumuzda ") +chalk.bold(chalk.underline(chalk.yellow(`${body.players.online}`))) + chalk.cyan(` Oyuncu aktif!`));
 				} else {
 					client.user.setStatus('dnd')
 					client.user.setActivity("Sunucu Kapalı", { type: ActivityType.Playing })
@@ -50,8 +50,8 @@ module.exports = {
 				if (body.online == false) {
 					client.channels.cache.get(settings.kanal.id).setName("Sunucu Kapalı");
 				}
-				if(body.players.now > 0) {
-					client.channels.cache.get(settings.kanal.id).setName(settings.kanal.yazi.replace("{online}", body.players.now).replace("{maxonline}", body.players.max))
+				if(body.players.online > 0) {
+					client.channels.cache.get(settings.kanal.id).setName(settings.kanal.yazi.replace("{online}", body.players.online).replace("{maxonline}", body.players.max))
 				} else {
 					client.channels.cache.get(settings.kanal.id).setName(settings.kanal.yazi.replace("{online}", 0).replace("{maxonline}", body.players.max));
 				}
