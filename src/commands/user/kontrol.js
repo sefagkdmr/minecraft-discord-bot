@@ -32,7 +32,8 @@ data: {
                       {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.online + '/' + body.players.max, inline: true },
                       {name: ":wrench: Sürüm;" , value: '▸ ' + version, inline: false},
                     ])
-                    .setImage("http://play.winterville.studio/" + reason + "/" + reason + "/" + settings.sunucu.port + "/banner.png")
+                    .setImage("http://status.mclive.eu/"+ reason +"/"+ reason +"/"+ settings.sunucu.port+ "/banner.png")
+                    //.setImage("http://api.taskium.dev/mcbanner/" + reason + "/" + reason + "/" + settings.sunucu.port + "/banner.png")
                     .setThumbnail("https://api.mcstatus.io/v2/icon/" + reason)
                     .setFooter({text: reason})
                   message.channel.send({embeds: [embeda]})
