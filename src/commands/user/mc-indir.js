@@ -26,6 +26,6 @@ module.exports = {
         .setFooter({text: 'Minecraft İndirme Bağlantısı', iconURL: interaction.guild.iconURL({dynamic: true, size: 2048})})
         .setThumbnail('https://play-lh.googleusercontent.com/VSwHQjcAttxsLE47RuS4PqpC4LT7lCoSjE7Hx5AW_yCxtDvcnsHHvm5CTuL5BPN-uRTP')
         .setTimestamp()
-        interaction.channel.send({embeds: [embed]})
+        interaction.reply({embeds: [embed]})
     }
 }

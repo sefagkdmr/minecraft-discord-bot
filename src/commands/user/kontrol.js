@@ -2,9 +2,7 @@ const { EmbedBuilder, ContextMenuCommandBuilder, SlashCommandBuilder, Applicatio
 const client = global.client;
 const settings = require("../../../app.js");
 var request = require('request');
-const { execute } = require("./yardım.js");
 const got = require('got');
-const functions = require("../../functions.js");
 module.exports = {
 data: {
 	name: 'kontrol',
@@ -28,7 +26,7 @@ data: {
                     .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + reason})
                     .addFields([
                       {name:":link: Sunucu Ip;", value: '▸ ' + reason, inline: true},
-                      {name: ":stopwatch: Web Site;" , value: '▸ ' + settings.sunucu.site, inline: true},
+                      {name: ":stopwatch: Web Site;" , value: '▸ [Website](' + settings.sunucu.site + ")", inline: true},
                       {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.online + '/' + body.players.max, inline: true },
                       {name: ":wrench: Sürüm;" , value: '▸ ' + version, inline: false},
                     ])
@@ -61,7 +59,7 @@ data: {
                     .setAuthor({name: `${settings.sunucu.isim} İstatistikleri`, iconURL: "https://eu.mc-api.net/v3/server/favicon/" + reason})
                     .addFields([
                       {name:":link: Sunucu Ip;", value: '▸ ' + reason, inline: true},
-                      {name: ":stopwatch: Web Site;" , value: '▸ ' + settings.sunucu.site, inline: true},
+                      {name: ":stopwatch: Web Site;" , value: '▸ [Website](' + settings.sunucu.site + ")", inline: true},
                       {name: ":green_circle: Çevrimiçi; " , value: '▸ ' + body.players.online + '/' + body.players.max, inline: true },
                       {name: ":wrench: Sürüm;" , value: '▸ ' + version, inline: false},
                     ])
@@ -69,13 +67,13 @@ data: {
                     //.setImage("http://api.taskium.dev/mcbanner/" + reason + "/" + reason + "/" + settings.sunucu.port + "/banner.png")
                     .setThumbnail("https://api.mcstatus.io/v2/icon/" + reason)
                     .setFooter({text: reason})
-                interaction.send({embeds: [embeda]})
+                interaction.reply({embeds: [embeda]})
           } else {
-              interaction.channel.send(':x: Sunucumuz şuanda kapalı lütfen daha sonra tekrar deneyin veya yetkililere bildirin')
+              interaction.reply(':x: Sunucumuz şuanda kapalı lütfen daha sonra tekrar deneyin veya yetkililere bildirin')
           }
       }).catch(error => {
           console.log(error)
-          interaction.channel.send(':x: Sunucumuz şuanda kapalı lütfen daha sonra tekrar deneyin veya yetkililere bildirin')
+          interaction.reply(':x: Sunucumuz şuanda kapalı lütfen daha sonra tekrar deneyin veya yetkililere bildirin')
       });
 
   }

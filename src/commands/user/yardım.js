@@ -55,7 +55,7 @@ module.exports = {
                 {name: `:outbox_tray: ${prefix}çıkar ▸`, value: `Belirtilen kullanıcı destek talebinden çıkarılır\n${prefix}çıkar <kullanıcı>`, inline: true},
             ])
             .setDescription(`Tüm komutlarımız bu şekildedir.\n bot Ön Eki(prefix): ${prefix}`);
-            await interaction.channel.send({embeds: [help]})
+            await interaction.reply({embeds: [help]})
         } else {
             help
             .addFields([
@@ -65,7 +65,7 @@ module.exports = {
                 {name: `:pick: ${prefix}mc-indir ▸`, value: `Minecraft indirme linkini gönderir`, inline: true},
             ])
             .setDescription(`Tüm komutlarımız bu şekildedir.\n bot Ön Eki(prefix): ${prefix}`);
-            interaction.channel.send({embeds: [help]})
+            interaction.reply({embeds: [help]})
         }
     }
 };

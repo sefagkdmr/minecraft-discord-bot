@@ -35,7 +35,7 @@ module.exports = {
             .setDescription(`Sunucumuza oy vererek bize destek olabilirsiniz!\n\n▸ ${settings.sunucu.vote}`)
             .setThumbnail("https://eu.mc-api.net/v3/server/favicon/" + settings.sunucu.ip)
             .setFooter({text: settings.sunucu.ip})
-            interaction.send({embeds: [embeda]})
+            interaction.reply({embeds: [embeda]})
     
     }
 }

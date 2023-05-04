@@ -49,22 +49,22 @@ module.exports = {
 
         if (bolum == 'avatar') {
             const webAttachment = new AttachmentBuilder(`https://mc-heads.net/avatar/${mesaj}.png`, {name: `${mesaj}.png`})
-            interaction.channel.send({files: [webAttachment]})
+            interaction.reply({files: [webAttachment]})
         }
 
         if (bolum == 'kafa') {
             const webAttachment = new AttachmentBuilder(`https://mc-heads.net/head/${mesaj}.png`, {name: `${mesaj}.png`})
-            interaction.channel.send({files: [webAttachment]})
+            interaction.reply({files: [webAttachment]})
         }
 
         if (bolum == 'vucut') {
             const webAttachment = new AttachmentBuilder(`https://mc-heads.net/body/${mesaj}.png`, {name: `${mesaj}.png`})
-            interaction.channel.send({files: [webAttachment]})
+            interaction.reply({files: [webAttachment]})
         }
 
         if (bolum == 'skin') {
             const webAttachment = new AttachmentBuilder(`https://mc-heads.net/skin/${mesaj}.png`, {name: `${mesaj}.png`})
-            interaction.channel.send({files: [webAttachment]})
+            interaction.reply({files: [webAttachment]})
         }
     }
 }
