@@ -1,9 +1,6 @@
 const { EmbedBuilder, ContextMenuCommandBuilder, SlashCommandBuilder, ApplicationCommandType } = require("discord.js");
 const client = global.client;
 const settings = require("../../../app.js");
-var request = require('request');
-const { execute } = require("./yardım.js");
-const got = require('got');
 
 module.exports = {
     data: {

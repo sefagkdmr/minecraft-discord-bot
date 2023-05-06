@@ -1,7 +1,6 @@
 const { EmbedBuilder, ContextMenuCommandBuilder, SlashCommandBuilder, ApplicationCommandType } = require("discord.js");
 const client = global.client;
 const settings = require("../../../app.js");
-var request = require('request');
 const got = require('got');
 module.exports = {
 data: {
@@ -17,7 +16,7 @@ data: {
         var url = "https://api.mcstatus.io/v2/status/" + settings.sunucu.type + "/" + settings.sunucu.ip + ":" + settings.sunucu.port;
         let reason = settings.sunucu.ip;
         
-        got(url).then(response => {
+        got.get(url).then(response => {
             let body = JSON.parse(response.body);
             if (body.players.online >= 0 && body.online == true) { 
               let version = settings.sunucu.type == "java" ? body.version.name_clean : body.version.name;
@@ -50,7 +49,7 @@ data: {
       var url = "https://api.mcstatus.io/v2/status/" + settings.sunucu.type + "/" + settings.sunucu.ip + ":" + settings.sunucu.port;
       let reason = settings.sunucu.ip;
 
-      got(url).then(response => {
+      got.get(url).then(response => {
           let body = JSON.parse(response.body);
           if (body.players.online >= 0 && body.online == true) { 
             let version = settings.sunucu.type == "java" ? body.version.name_clean : body.version.name;
