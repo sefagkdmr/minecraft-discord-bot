@@ -1,7 +1,5 @@
 const chalk = require('chalk');
 const { ActivityType ,ButtonStyle, PermissionFlagsBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
-const { fstat, writeFileSync } = require('fs');
-
 
 module.exports = {
     eventName: "ready",
@@ -11,7 +9,6 @@ module.exports = {
 		const settings = require("../../app.js") 
 		const i = require("util").promisify(setInterval)
 		var statustring = "Bağlantı hatası!";
-		var request = require('request');
 		var url = "https://api.mcstatus.io/v2/status/" + settings.sunucu.type + "/" + settings.sunucu.ip + ":" + settings.sunucu.port;
 		const got = require('got');
 

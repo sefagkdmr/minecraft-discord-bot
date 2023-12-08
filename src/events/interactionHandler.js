@@ -3,6 +3,8 @@ module.exports = {
     name: "Interaction Handler",
     eventName: "interactionCreate",
     async execute(interaction) {
+      const settings = require("../../app.js");
+      if(settings.bot.slashCommands && settings.bot.slashCommands !== "undefined") {
       if (interaction.isModalSubmit()) {
         const modal = client.modals.get(interaction.customId);
         if (!modal) return;
@@ -37,5 +39,8 @@ module.exports = {
             }, command.data.cooldown * 1000);
           };
       }
+    } else { 
+      interaction.reply({ content: "Slash komutları kapalı", ephemeral: true });
+    }
     }
 }
