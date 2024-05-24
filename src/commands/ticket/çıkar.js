@@ -16,23 +16,10 @@ data: {
         if (!message.member.roles.cache.find(r => r.id === settings.ticket.roleSupport)) return message.reply(`Komutu kullanabilmek için <@&${settings.ticket.roleSupport}> rolüne ihtiyacın var.`)
         if (!user) return message.reply(`Komutu doğru kullanabilmek için bir kullanıcı etiketlemen gerekir!`);
         if (chan.name.includes('talep')) {
-          chan.edit({
-            permissionOverwrites: [{
-              id: user,
-              deny: ['SEND_MESSAGES', 'VIEW_CHANNEL'],
-            },
-            {
-              id: message.guild.roles.everyone,
-              deny: ['VIEW_CHANNEL'],
-            },
-            {
-              id: settings.ticket.roleSupport,
-              allow: ['SEND_MESSAGES', 'VIEW_CHANNEL'],
-            },
-          ],
-          }).then(async () => {
-            message.reply(`<@${user.id}> talepten çıkarıldı!`);
-          });
+          chan.permissionOverwrites.edit(user.id, {ViewChannel: false , SendMessages: false})
+          chan.permissionOverwrites.edit(settings.ticket.roleSupport, {ViewChannel: true , SendMessages: true})
+          chan.permissionOverwrites.edit(message.guild.roles.everyone, {ViewChannel: false})
+          message.reply(`${user} kişisi talepten çıkarıldı!`);
         } else {
           message.reply('Komutu kullanabilmek için bir talep kanalında olman gerekir!!');
         };
