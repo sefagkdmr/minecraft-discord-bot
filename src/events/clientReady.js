@@ -23,13 +23,13 @@ module.exports = {
 
 			got.get(url).then(response => {
 				const body = JSON.parse(response.body);
-				var status = settings.durum.mesaj.replace("{online}", body.players.online);
 				
-				if(body.players.online >= 0 && body.online == true) {
+				if(body.online == true && body.players.online >= 0 ) {
+					var status = settings.durum.mesaj.replace("{online}", body.players.online).replace("{maxonline}", body.players.max);
 					client.user.setStatus('online')
 					client.user.setActivity(status, { type: ActivityType.Playing })
 					console.log(chalk.magenta(`[${settings.sunucu.isim}]`) + chalk.cyan(" Sunucumuzda ") +chalk.bold(chalk.underline(chalk.yellow(`${body.players.online}`))) + chalk.cyan(` Oyuncu aktif!`));
-				} else {
+				} else if(body.online == false) {
 					client.user.setStatus('dnd')
 					client.user.setActivity("Sunucu Kapalı", { type: ActivityType.Playing })
 					console.log(chalk.yellow(`[${settings.sunucu.isim}]`) + chalk.red(` Sunucu Kapalı`));
@@ -56,8 +56,17 @@ module.exports = {
 				console.log(error)
 			})
 		}
-		update();
-  		i(update,30000).catch(chalk.red(`[${settings.sunucu.isim}]`) + `sefa ${console.error}`)
+		if(settings.durum.aktif == true && settings.durum.mesaj.includes("{online}")) {
+
+			update();
+		 	i(update,30000).catch(chalk.red(`[${settings.sunucu.isim}]`) + ` ${console.error}`)
+
+		} else if(settings.durum.aktif == true && !settings.durum.mesaj.includes("{online}") ){
+
+			client.user.setStatus('online')
+			client.user.setActivity(settings.durum.mesaj , { type: ActivityType.Playing })
+
+		}
 
 		if(settings.kanal.aktif == true) updates();
   		if(settings.kanal.aktif == true) i(updates,30000).catch(chalk.green(`[${settings.sunucu.isim}]`) + ` ${console.error}`);	
@@ -66,6 +75,7 @@ module.exports = {
 		const oniChan = client.channels.cache.get(settings.ticket.ticketChannel)
 
 		function sendTicketMSG() {
+
 			const embed = new EmbedBuilder()
 			  .setColor('6d6ee8')
 			  .setAuthor({name: 'Ticket', iconURL: client.user.avatarURL()})

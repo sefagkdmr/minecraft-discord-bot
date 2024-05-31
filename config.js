@@ -10,9 +10,9 @@ const config = {
  	    ip: "sunucu ip adresi", //sunucu adresi
         port: 25565, //sunucu portu java için varsayılan 25565 bedrock için varsayılan 19132
         site: "Sunucu Sitesi", //sunucu sitesi
-        isim: "Sunucu İsmi", //sunucu ismi
         mcindir: "Oyuncuları için 3. parti minecraft indirme linki", //minecraft indirme linki
         vote: "Sunucunuzun Oy linki", //oy verme linki
+        isim: "Sunucu ismi", //sunucu ismi
         
     },
     kanal : {
@@ -22,6 +22,18 @@ const config = {
    },
     durum : {
 	    mesaj: "{online} Kişi Sunucumuzda" // bot durumunda online sayısı || Varsayılan {online} Kişi Sunucumuzda 
+        aktif: true, //durum mesajı aktif mi? true: aktif false: pasif
+
+        // {online} = sunucuda olan oyuncu sayısı
+        // {maxonline} = sunucuda olabilecek maksimum oyuncu sayısı
+
+        // Örnek: "Sunucumuzda {online} kişi var" => Sunucumuzda 10 kişi var
+        // Örnek: "Sunucumuzda {online}/{maxonline} kişi var" => Sunucumuzda 10/20 kişi var
+        // NOT: {online} değişkenini kullanmazsanız 30 saniyede bir durum güncellemesi olayı iptal olur.
+        // NOT: {online} değişkenini kullanmazsanız durum mesajı sabit olur.
+        // NOT: {online} değişkenini kullanmazsanız {maxonline} değişkenini kullanamazsınız.
+        // NOT: {online} değişkenini kullandığınızda 30 saniyede bir durum güncellemesi yapılır.
+        // NOT: aktif: false yaptığınız zaman durum mesajı olmaz.
    },
     ticket : {    
         parentOpened: "Talep kanallarının açılacağı kategori", //destek talep kanallarının açılacağı kategorinin idsi

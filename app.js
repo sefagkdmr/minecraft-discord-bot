@@ -1,7 +1,7 @@
 
 const { Client, Collection } = require("discord.js");
 const client = new Client({
-    intents: 33283 
+    intents: 3276799 
 });
 
 
